@@ -1,0 +1,96 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+@import '~antd/dist/antd.css';
+
+html{
+  -ms-content-zoom-chaining: none;
+  -ms-touch-action: pan-x pan-y;
+}
+.paging :hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  outline: auto;
+}
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  line-height: 1.5;
+  color: #24292e;
+  background-color: #fff;
+}
+body {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+
+/*
+.favorite_menu .item:hover{
+    cursor: pointer;
+    background-color: #3b5998;
+    
+}
+*/
+.favorite_menu .item:visited{
+  
+  background-color:#3b5998;
+}
+
+.favorite_menu li:active{
+  color:#3b5998
+}
+
+.app {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+input.error {
+  border-color: red;
+}
+
+.input-feedback {
+  color: red;
+  height: 5px;
+  margin-top: -12px;
+}
+table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 95%;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.page_list:hover{
+  cursor: pointer;
+  background-color: #3b5998;
+}

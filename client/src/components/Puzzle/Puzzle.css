@@ -1,0 +1,119 @@
+*{
+    margin:0;
+    padding:0;
+    
+}
+.wrap-all{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.play-time{
+    margin:1rem auto;
+    font-size: 32px;
+    color:white;
+}
+.start-button{
+    margin:2rem auto;
+    border :none;
+    font-size: 24px;
+    background:blue;
+    color:white;
+    padding: 1rem 2rem;
+}
+.game-text{
+    margin-bottom: 5rem;
+    font-size: 32px;
+    position: absolute;
+    text-align: center;
+    color: blue;
+    text-shadow: 1px 1px 15px red;
+    display:none;
+
+}
+/*  https://res.cloudinary.com/dhjegsbqv/image/upload/w_400,h_400/v1617036857/zzjqipsh0xehilnszehn.jpg */
+.img-container{
+    border: 2px solid #3b3b3b;
+    list-style: none;
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    width:400px;
+    height:400px;
+    box-shadow: 0 0 10px purple;
+}
+.img-container > li{
+    /*
+    background: url('https://res.cloudinary.com/dhjegsbqv/image/upload/w_400,h_400/v1617361168/uploads/fejddb6to9saw6bujb1h.jpg');
+    */
+    background:url('https://res.cloudinary.com/dhjegsbqv/image/upload/w_400,h_400/v1617036857/zzjqipsh0xehilnszehn.jpg');
+    border: 0.5px solid wheat;
+    width:100px;
+    height:100px;
+}
+
+.img-container .list0{
+    background-position-x: 0;
+    background-position-y: 0;
+}
+.img-container .list1{
+    background-position-x: -100px;
+    background-position-y: 0;
+}
+.img-container .list2{
+    background-position-x: -200px;
+    background-position-y: 0;
+}
+.img-container .list3{
+    background-position-x: -300px;
+    background-position-y: 0;
+}
+.img-container .list4{
+    background-position-x: 0px;
+    background-position-y: -100px;
+}
+.img-container .list5{
+    background-position-x: -100px;
+    background-position-y: -100px;
+}
+.img-container .list6{
+    background-position-x: -200px;
+    background-position-y: -100px;
+}
+.img-container .list7{
+    background-position-x: -300px;
+    background-position-y: -100px;
+}
+.img-container .list8{
+    background-position-x: 0px;
+    background-position-y: -200px;
+}
+.img-container .list9{
+    background-position-x: -100px;
+    background-position-y: -200px;
+}
+.img-container .list10{
+    background-position-x: -200px;
+    background-position-y: -200px;
+}
+.img-container .list11{
+    background-position-x: -300px;
+    background-position-y: -200px;
+}
+.img-container .list12{
+    background-position-x: 0px;
+    background-position-y: -300px;
+}
+.img-container .list13{
+    background-position-x: -100px;
+    background-position-y: -300px;
+}
+.img-container .list14{
+    background-position-x: -200px;
+    background-position-y: -300px;
+}
+.img-container .list15{
+    background-position-x: -300px;
+    background-position-y: -300px;
+}

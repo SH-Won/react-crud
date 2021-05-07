@@ -1,0 +1,48 @@
+import React,{useState} from 'react'
+import {Checkbox,Collapse} from 'antd';
+
+const {Panel} = Collapse
+
+function CheckBox(props) {
+
+    const [Checked,setChecked]=useState([])
+    const handleToggle = (value)=>{
+        const current = Checked.indexOf(value);
+        let newChecked = [...Checked];
+
+        if(current === -1){
+            newChecked.push(value)
+        }
+        else{
+        newChecked.splice(current,1)
+        }
+        setChecked(newChecked);
+        props.handleFilter(newChecked)
+
+    }
+
+    const renderCheckbox = ()=> props.list && props.list.map((value,index)=>(
+        <React.Fragment key={index}>
+        <Checkbox
+            onChange={()=>handleToggle(value._id)}
+            type="checkbox"
+            checked={Checked.indexOf(value._id) === -1 ? false:true}
+        />&nbsp;&nbsp;
+        <span>{value.name}</span>
+         &nbsp;&nbsp;&nbsp;
+        </React.Fragment>
+    ))
+
+    return (
+        <div>
+            <Collapse defaultActiveKey={['0']}>
+                <Panel header="category" key="1">
+                   {renderCheckbox()}
+                </Panel>
+            </Collapse>
+            
+        </div>
+    )
+}
+
+export default CheckBox

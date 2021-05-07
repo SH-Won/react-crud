@@ -1,0 +1,132 @@
+.edit_container{
+    width:80%;
+    margin:2rem auto;
+
+}
+.edit_header{
+    display:flex;
+    justify-content: center;
+}
+
+.upload_container{
+    display:flex;
+    justify-content: space-between;
+}
+
+.input_img{
+    display:flex;
+    width:35vw;
+    height:50vh;
+    border:1px solid lightgray;
+    align-items: center;
+    justify-content: center;
+}
+.total_img_container{
+    display:flex;
+    width:40vw;
+    height:50vh;
+    overflow-x: scroll;
+    flex-wrap: wrap;
+    padding:1rem;
+    border :1px solid rosybrown;
+    border-radius: 16px;
+}
+.original_img_container{
+   padding:0.5rem;
+   box-sizing: border-box;
+    width:17vw;
+    height:25vh;
+    
+
+}
+.original_img{
+    width:100%;
+    height:100%;
+
+
+}
+.original_img:hover{
+    transform: scale(1.2);
+    border-radius: 8px;
+    cursor: pointer;
+
+}
+.new_img_container{
+    padding:0.5rem;
+    box-sizing: border-box;
+    width:17vw;
+    height:25vh;
+    
+
+}
+.new_img{
+    width:100%;
+    height:100%;
+}
+.new_img:hover{
+    transform: scale(1.2);
+    border-radius: 8px;
+    cursor: pointer;
+
+}
+
+
+@media screen and (max-width:600px){
+    .upload_container{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .input_img{
+        display:flex;
+    width:60vw;
+    height:30vh;
+    border:1px solid lightgray;
+    align-items: center;
+    justify-content: center;
+    }
+    .total_img_container{
+        display: flex;
+        width:80vw;
+        height:30vh;
+        overflow-x: scroll;
+        flex-wrap:nowrap;
+        margin: 1rem;
+        padding:0.5rem;
+        align-items: center;
+        justify-content: flex-start
+        
+       
+    }
+    
+    .original_img_container {
+        display:flex;
+        padding:0.5rem;
+        margin:0.5rem;
+        box-sizing: border-box;
+        width:30vw;
+        height:25vh;
+        
+        
+       
+    }
+    .new_img_container{
+        display: flex;
+        padding:0.5rem;
+        margin:0.5rem;
+        box-sizing: border-box;
+        width:30vw;
+        height:25vh;
+        
+        
+        
+    }
+
+    .original_img , .new_img{
+       width:25vw;
+       height:22vh;
+        
+       
+
+}
+}
