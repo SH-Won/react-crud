@@ -7,7 +7,7 @@ const { TextArea } = Input;
 const Comments = ({
   commentList,
   onSubmitComment,
-  writer,
+  user,
   deleteComment,
   productId
  
@@ -44,12 +44,12 @@ const Comments = ({
                       <SingleComment
                         comment={comment}
                         onSubmitComment={onSubmitComment}
-                        writer={writer}
+                        user={user}
                         deleteComment={deleteComment}
                         productId={productId}
                       />
                       <ReplyComment
-                        writer={writer}
+                        user={user}
                         parentCommentId={comment._id}
                         commentList={commentList}
                         onSubmitComment={onSubmitComment}

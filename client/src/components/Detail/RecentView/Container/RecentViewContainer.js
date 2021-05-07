@@ -3,25 +3,25 @@ import {useSelector,useDispatch} from 'react-redux';
 import {recentlyView} from '../../../../_actions/user_actions'
 import RecentView from '../Presenter/RecentView';
 import '../Presenter/RecentView.css';
-const RecentViewContainer = ({productId,writer}) => {
+const RecentViewContainer = ({productId,user}) => {
     const dispatch = useDispatch();
 
     useEffect(()=>{
         
         let variable = {
             product:productId,
-            userTo:writer
+            userTo:user
           }
-     writer && dispatch(recentlyView(variable))
+     user && dispatch(recentlyView(variable))
         
-    },[writer])
-    //console.log(writer)
+    },[user])
+   
     const userView = useSelector(state=>state.user.views);
-    const userRecentView = userView.map(view => view.product)
+    const userRecentView = userView && userView.map(view => view.product)
    
     return (
 
-        <RecentView userRecentView={userRecentView} />
+        <RecentView userRecentView={userRecentView && userRecentView} />
     )
 }
 

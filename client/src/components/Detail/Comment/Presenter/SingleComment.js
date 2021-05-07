@@ -4,7 +4,7 @@ import LikeDisLikePage from '../../LikeDislike/Container/LikeDisLikePage'
 
 const { TextArea } = Input;
 
-const SingleComment = ({ comment, onSubmitComment, writer, deleteComment,productId }) => {
+const SingleComment = ({ comment, onSubmitComment, user, deleteComment,productId }) => {
   const [OpenReply, setOpenReply] = useState(false);
   const [CommentValue, setCommentValue] = useState("");
   const handleOpenReply = () => {
@@ -14,9 +14,9 @@ const SingleComment = ({ comment, onSubmitComment, writer, deleteComment,product
     setCommentValue(e.target.value);
   };
   const deleteButton = [
-    <LikeDisLikePage comment={comment} writer={writer} productId={productId}/>,
+    <LikeDisLikePage comment={comment} user={user} productId={productId}/>,
     <Button onClick={handleOpenReply}>답글 달기</Button>,
-    (writer === comment.writer._id && comment.content !== "삭제된 댓글 입니다")
+    (user === comment.writer._id && comment.content !== "삭제된 댓글 입니다")
       ? <Button onClick={() => deleteComment(comment._id)}> 삭제 </Button>
       : "",
   ];

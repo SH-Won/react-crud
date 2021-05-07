@@ -6,7 +6,7 @@ import {
     DeleteComment,
   } from "../../../../_actions/comment_actions";
 import Comments from '../Presenter/Comments'
-const CommentContainer = ({productId,writer}) => {
+const CommentContainer = ({productId,user}) => {
     const dispatch =useDispatch();
     
    
@@ -23,12 +23,12 @@ const CommentContainer = ({productId,writer}) => {
         let variable = {};
         !commentId
           ? (variable = {
-              writer: writer,
+              writer: user,
               content: CommentValue,
               productId: productId,
             })
           : (variable = {
-              writer: writer,
+              writer: user,
               content: CommentValue,
               productId: productId,
               responseTo: commentId,
@@ -47,7 +47,7 @@ const CommentContainer = ({productId,writer}) => {
       
     return (
         <Comments 
-        writer={writer}
+        user={user}
         productId={productId}
         commentList={commentList}
         onSubmitComment={onSubmitComment}

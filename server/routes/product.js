@@ -179,67 +179,64 @@ router.post('/updateView',(req,res)=>{
     
 })
 router.post('/recentlyView',(req,res)=>{
-    
-
-    View.find({product:req.body.product,userTo:req.body.userTo})
-    .exec((err,info)=>{
-        if(info.length == 0){
-            const view = new View(req.body)
-            view.save((err,result)=>{
-                if(err) res.json({success:false,err})
-                View.find({userTo:req.body.userTo})
-                .populate('product')
-                .exec((err,views)=>{
-                    console.log(views);
-                    views.reverse();
-                    res.status(200).json({success:true,views})
-                })
-                
-            })
-        }
-        else{
-            View.findOneAndDelete({userTo:req.body.userTo,product:req.body.product})
-           // .populate('product')
-            .exec((err,views)=>{
-                if(err) res.json({success:false,err})
-               //왜 view=> view.product._id 가 [ {},{},{},{},{}...] 이런 형식일까? 궁금...
-              /*  const targetArray = views.length >0 && views.map(view=>view.product._id.toString())
-                const targetIndex = targetArray.indexOf(req.body.product)
-                
-                
-              console.log(t,typeof t);
-                console.log(targetIndex)
-                const temp = views[targetIndex]
-                 console.log(temp)
-                views.splice(targetIndex,1);
-                views.push(temp);
-                console.log(views)
-                views.reverse();
-                res.status(200).json({success:true,views});*/
-
-                // 몽고 DB에 저장된건 reverse 가 안되있다는걸 깨닫지 못하고
-                // 계속 삽질을 했다.........................ㅠㅠ..
+    View.find(
+        {product:req.body.product,userTo:req.body.userTo},
+        (err,info)=>{
+            if(info.length ===0){
                 const view = new View(req.body)
                 view.save((err,result)=>{
                     if(err) res.json({success:false,err})
                     View.find({userTo:req.body.userTo})
                     .populate('product')
                     .exec((err,views)=>{
-                        if(err) res.json({success:false,err})
-                        console.log(views)
+                        
                         views.reverse();
                         res.status(200).json({success:true,views})
                     })
+                    
                 })
                 
-            })
+            }
+            else{
+                View.find({userTo:req.body.userTo})
+                .populate('product')
+                // .populate('product')
+                 .exec((err,views)=>{
+                     if(err) res.json({success:false,err})
+                    //왜 view=> view.product._id 가 [ {},{},{},{},{}...] 이런 형식일까? 궁금...
+                   /*  const targetArray = views.length >0 && views.map(view=>view.product._id.toString())
+                     const targetIndex = targetArray.indexOf(req.body.product)
+                     
+                     
+                   console.log(t,typeof t);
+                     console.log(targetIndex)
+                     const temp = views[targetIndex]
+                      console.log(temp)
+                     views.splice(targetIndex,1);
+                     views.push(temp);
+                     console.log(views)
+                     views.reverse();
+                     res.status(200).json({success:true,views});*/
+     
+                     // 몽고 DB에 저장된건 reverse 가 안되있다는걸 깨닫지 못하고
+                     // 계속 삽질을 했다.........................ㅠㅠ..
+
+                         
+                             
+                             views.reverse();
+                             res.status(200).json({success:true,views})
+                         
+                     
+                     
+                 })
+
+            }
         }
-    })
+        )
+   
+    
 })
-router.post('/getRecentlyView',(req,res)=>{
-    View.find({userTo:req.body.userTo})
-    .populate
-})
+
 
 router.post('/getFirstProducts',(req,res)=>{
     let order = req.body.order ? req.body.order : 'desc';

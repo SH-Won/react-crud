@@ -1,18 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getBoardProduct,getFirstProduct,getProductDetail } from "../../_actions/product_actions";
-import {
-  getComments,
-  saveComment,
-  DeleteComment,
-} from "../../_actions/comment_actions";
-//import {recentlyView } from '../../_actions/user_actions';
-//import DetailPage from "../../Component/Detail/DetailPage";
-//import Comments from "../../Component/Detail/Comments";
-//import RecentView from '../../Component/Detail/RecentView';
-//import Board from '../../Component/Detail/Board'
-
-
+import { useSelector } from "react-redux";
 import HeaderContainer from './Header/Container/HeaderContainer';
 import BoardContainer from './Board/Container/BoardContainer';
 import RecentViewContainer from './RecentView/Container/RecentViewContainer'
@@ -33,9 +20,9 @@ const DetailContainer = (props) => {
       
       
       </div>
-      <RecentViewContainer productId={productId} writer={writer._id}/>
+      <RecentViewContainer productId={productId} user={user && user._id}/>
       <CommentContainer
-        writer={writer._id}
+        user={user && user._id}
         productId={productId}
         
       />

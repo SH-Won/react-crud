@@ -7,7 +7,8 @@ import {addCommentLikeUser,
         subCommentDisLikeUser} from '../../../../_actions/comment_actions';
 
 
-const LikeDisLikePage = ({comment,writer,productId}) => {
+const LikeDisLikePage = (props) => {
+    const {comment,user} = props;
     const dispatch = useDispatch();
     const [LikeNumber,setLikeNumber]=useState(0);
     const [DisLikeNumber,setDisLikeNumber]=useState(0);
@@ -20,27 +21,26 @@ const LikeDisLikePage = ({comment,writer,productId}) => {
         setLikeNumber(comment.likeUser.length)
         setDisLikeNumber(comment.disLikeUser.length)
 
-        comment && comment.likeUser.map(user=>{
-            console.log(user,typeof user)
-            console.log(writer,typeof writer)
-            if(user===writer){
+        comment && comment.likeUser.map(likeMember=>{
+            
+            if(likeMember===user){
                 console.log('확인')
                 setLiked(true)
             }
         })
-        comment && comment.disLikeUser.map(user=>{
-            if(user===writer){
+        comment && comment.disLikeUser.map(disLikeMember=>{
+            if(disLikeMember===user){
                 setDisLiked(true)
             }
         })
 
-    },[writer])
+    },[user])
     
     console.log('코멘트 좋아요 렌더링')
     const onLike =()=>{
         let variable={
             commentId:comment._id,
-            user:writer,
+            user:user,
             productId:comment.productId
         }
         if(Liked === false){
@@ -63,7 +63,7 @@ const LikeDisLikePage = ({comment,writer,productId}) => {
     const onDisLike = (commentId)=>{
         let variable ={
             commentId:comment._id,
-            user:writer,
+            user:user,
             productId:comment.productId
         }
         if(DisLiked === false){
