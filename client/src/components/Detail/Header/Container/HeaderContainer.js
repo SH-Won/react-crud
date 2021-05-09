@@ -6,16 +6,17 @@ import '../Presenter/Header.css'
 import {addUserCartItem} from '../../../../_actions/user_actions';
 
 
-const HeaderContainer = ({history,productId}) => {
+const HeaderContainer = (props) => {
+    const {history,productId} =props;
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.user.userData, []);
     const product = useSelector(state => state.product.product, []);
     const [selectedImage,setSelectedImage] =useState('');
-
+    //const [deleteState,setDeleteState]=useState(false);
     useEffect(()=>{
+       
         dispatch(getProductDetail(productId))
-        
         
     },[])
    
@@ -26,15 +27,21 @@ const HeaderContainer = ({history,productId}) => {
        setSelectedImage(product.images[0])
 
     },[product.images])
+    console.log(product);
     
     
     const deleteProduct = ()=>{
+        
         let variable={
             productId:productId,
             userTo:user._id
         }
+
         dispatch(removeProduct(variable))
-        .then(response=> history.push('/'))
+        
+            
+            history.push('/')
+            
         
     }
     const selectImage = (image)=>{
@@ -45,6 +52,7 @@ const HeaderContainer = ({history,productId}) => {
         dispatch(addUserCartItem(productId));
 
     }
+    
 
     return (
         

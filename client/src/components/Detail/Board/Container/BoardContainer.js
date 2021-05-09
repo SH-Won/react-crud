@@ -37,23 +37,20 @@ const BoardContainer = ({productId}) => {
         
       },[products])
 
-     // const board = products.slice(4,8);
-      //console.log(board);
+     
       
       useEffect(()=>{
-        //dispatch(getBoardProduct(Skip,Limit))
+        
         const board = products.slice(Skip,Skip+Limit)
           setboardProduct(board)
       },[CurrentPage])
      
-      const board_products = useSelector(state=>state.product.boardProducts)
+     
 
 
       const onChangePage =(page)=>{
         const skip = (page -1) * Limit
-       console.log(skip)
-    
-      //  dispatch(getBoardProduct(skip,Limit))
+       
         setSkip(skip)
         setCurrentPage(page)
         

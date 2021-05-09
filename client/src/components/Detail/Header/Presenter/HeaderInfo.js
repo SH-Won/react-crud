@@ -1,17 +1,23 @@
 import React from 'react'
-import { Descriptions,Button} from 'antd'
+import { Button} from 'antd'
 
 const HeaderInfo = ({product,user,deleteProduct,addToCart}) => {
    
     return (
-        <div style={{margin:'1rem auto'}}>
-        <Descriptions bordered>
-            <Descriptions.Item label="제목">{product.title}</Descriptions.Item>
-            <Descriptions.Item label="내용">{product.description}</Descriptions.Item>
-            <Descriptions.Item label="작성자">{product.writer && product.writer.name}</Descriptions.Item>
-        
-        </Descriptions>
-        <br/>
+        <div style={{width:'100%',margin:'1rem auto'}}>
+        <div className="detail-header-description-container">
+            <div className="information-right">
+                <h2>{product.title}</h2>
+                <dl className="detail-header-description">
+                    <dt>설명</dt>
+                    <dd><span>{product.description}</span></dd>
+
+                </dl>
+                
+            </div>
+            
+            
+        </div>
         {
         product.writer && product.writer._id == user && 
         <div>

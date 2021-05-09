@@ -43,6 +43,7 @@ const Storage = new CloudinaryStorage({
     }
 })
 
+
 const parser = multer({storage:Storage}).array('file');
 
 
@@ -338,7 +339,7 @@ router.get('/getProducts',(req,res)=>{
 
 
 router.post('/removeProduct',(req,res)=>{
-    Product.findOneAndDelete({_id:req.body.productId})
+   /* Product.findOneAndDelete({_id:req.body.productId})
     .exec((err,result)=>{
         if(err) return res.json({success:false,err})
         
@@ -350,6 +351,19 @@ router.post('/removeProduct',(req,res)=>{
             console.log(result)
         })
     })
+    */
+    Product.deleteOne(
+        {_id:req.body.productId},
+        (err,result)=>{
+            console.log('product',result);
+            View.deleteMany({product:req.body.productId})
+            .exec((err,result)=>{
+                if(err) return res.json({success:false,err})
+            res.json({success:true,result})
+            console.log(result)
+            })
+        }
+        )
    
 })
 
@@ -438,7 +452,7 @@ router.get('/products_by_id',(req,res)=>{
     .exec((err,product)=>{
         if(err) return res.json({success:false,err})
         res.status(200).send(product)
-      //  console.log(product);
+         console.log('detail',product);
        // console.log(typeof product)
     })
 

@@ -5,25 +5,22 @@ const HeaderImage = (props) => {
     const {images,selectedImage,selectImage} =props;
    
     return (
-        <div>
-            
-            <div>
-                <div style={{display:'flex', flexDirection:'column',alignItems:'center'}}>
+        <div className="detail-header_img-container">
+                   
                     {selectedImage && 
-                    <div className="selected_img">
-                    <img src={`${selectedImage}`} />
-                    </div>
+                    
+                    <img className="selected-img" src={`${selectedImage}`} />
+                    
                     }
-                    <div className="select_img">
+                    <div className="choose-img-wrap">
                     {images && images.map((image,index)=>(
-                        <div className='img_container' key={index} >
-                        <img className={selectedImage === image ? 'choosed_img':'choose_img'}  onClick={()=>selectImage(image)} src={`${image}`} />
-                        </div>
+                        
+                        <img key={index} className={selectedImage === image ? 'choosed-img':'choose-img'}  onClick={()=>selectImage(image)} src={`${image}`} />
+                        
                     ))}
                     </div>
-                </div>
                 
-            </div>
+                
             
         </div>
     )

@@ -3,18 +3,18 @@ import HeaderImage from "./HeaderImage";
 import HeaderInfo from "./HeaderInfo";
 
 
-const DetailPage = ({ product,user,deleteProduct,selectedImage,selectImage,addToCart }) => {
+const HeaderPage = ({ product,user,deleteProduct,selectedImage,selectImage,addToCart }) => {
   
   return (
-        <div className="detail_container">
-          <div className="product_header">
+        <div className="detail-header-container">
+          <div className="detail-header">
           <h2>{product.title}</h2>
-          <ul className="product_info">
+          <ul className="detail-header_info">
             <li>{product.writer && product.writer.name}</li>
             <li>{product.createdAt}</li>
           </ul>
           </div>
-          <div className="detail_content">
+          <div className="detail-header_content">
           <HeaderImage images={product.images} selectedImage={selectedImage} selectImage={selectImage}/>
           <HeaderInfo product={product} user={user} deleteProduct={deleteProduct} addToCart={addToCart}/>
           </div>
@@ -23,4 +23,4 @@ const DetailPage = ({ product,user,deleteProduct,selectedImage,selectImage,addTo
   );
 };
 
-export default DetailPage;
+export default HeaderPage;

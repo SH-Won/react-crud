@@ -79,7 +79,6 @@ const UploadContainer = (props) => {
     }
     
    // const images=useSelector(state=>state.upload.images,[]);
-    const previewImages = useSelector(state=>state.upload.previewImages);
     
    /* const deleteImage = (image)=>{
         let imageArray =[...images]
