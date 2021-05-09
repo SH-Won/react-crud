@@ -237,51 +237,6 @@ router.post('/recentlyView',(req,res)=>{
     
 })
 
-
-router.post('/getFirstProducts',(req,res)=>{
-    let order = req.body.order ? req.body.order : 'desc';
-    let sortBy =req.body.sortBy ? req.body.sortBy : '_id';
-    let limit = req.body.limit ? parseInt(req.body.limit) : 100;
-    let skip = parseInt(req.body.skip);
-    let term = req.body.searchTerm;
-
-    let findArgs={}
-    for(let key in req.body.filters){
-        if(req.body.filters[key].length >0){
-            if(req.body.filters[key]==='price'){
-
-            }
-            else{
-                findArgs[key]=req.body.filters[key]
-            }
-        }
-    }
-    console.log(findArgs)
-
-   if(term){
-    Product.find(findArgs)
-    .find({$text:{$search:term}})
-    .populate('writer')
-   // .sort([[sortBy,order]])
-    .skip(skip)
-    .limit(limit)
-    .exec((err,products)=>{
-        if(err) return res.json({success:false,err})
-        res.json({success:true,products,postSize:products.length})
-    })
-   }
-   else{
-    Product.find(findArgs)
-    .populate('writer')
-    //.sort([[sortBy,order]])
-    .skip(skip)
-    .limit(limit)
-    .exec((err,products)=>{
-        if(err) return res.json({success:false,err})
-        res.json({success:true,products,postSize:products.length})
-    })
-   }
-})
 router.post('/getBoardProducts',(req,res)=>{
     let order = req.body.order ? req.body.order : 'desc';
     let sortBy =req.body.sortBy ? req.body.sortBy : '_id';
@@ -327,28 +282,29 @@ router.post('/getBoardProducts',(req,res)=>{
    }
 })
 
-router.post('/getProducts',(req,res)=>{
+
+router.get('/getProducts',(req,res)=>{
+ 
+    let variable = JSON.parse(req.query.variable);
+    console.log(variable);
     let order = req.body.order ? req.body.order :'desc';
     let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
-    let limit = req.body.limit? parseInt(req.body.limit) : 100;
-    let skip = parseInt(req.body.skip);
-    let findArgs ={};
-    let term =req.body.searchTerm;
-    
+    let skip = variable.skip ? parseInt(variable.skip,10) : Number(0);
+    let limit = variable.limit ? parseInt(variable.limit,10) : Number(100);
+    let term = variable.searchTerm;
+    let findArgs={};
 
-    for(let key in req.body.filters){
-        if(req.body.filters[key].length >0){
+    for(let key in variable.filters){
+        if(variable.filters[key].length > 0){
             if(key==='price'){
 
             }
             else{
-                findArgs[key]=req.body.filters[key]
+                findArgs[key]=variable.filters[key]
             }
         }
-        
     }
-    console.log(findArgs);
-    console.log(req.body.filters);
+    console.log(`skip:${skip}, limit:${limit}, findArgs:${findArgs},term:${term}` )
     if(term){
         Product.find(findArgs)
         .find({$text:{$search:term}})
@@ -357,6 +313,7 @@ router.post('/getProducts',(req,res)=>{
     .skip(skip)
     .limit(limit)
     .exec((err,products)=>{
+        console.log('products',products);
         if(err) return res.json({success:false,err})
         res.json({success:true,products,postSize:products.length,length:products.length})
     })
@@ -368,102 +325,18 @@ router.post('/getProducts',(req,res)=>{
     .skip(skip)
     .limit(limit)
     .exec((err,products)=>{
+        console.log('products',products);
         if(err) return res.json({success:false,err})
         res.json({success:true,products,postSize:products.length, length:products.length})
     })
     }
-})
-/*
-router.post('/getFilterProduct',(req,res)=>{
-    let order = req.body.order ? req.body.order :'desc';
-    let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
-    let limit = req.body.limit? parseInt(req.body.limit) : 100;
-    let skip = parseInt(req.body.skip);
-    let findArgs ={};
-    let term = req.body.searchTerm;
+
     
-    for(let key in req.body.filters){
-        if(req.body.filters[key].length >0){
-            if(key==='price'){
-
-            }
-            else{
-                findArgs[key]=req.body.filters[key]
-            }
-        }
-        
-    }
-    console.log(findArgs);
-   if(term){
-    Product.find(findArgs)
-    .find({$text:{$search:term}})
-    .populate('writer')
-    .sort([[sortBy,order]])
-    .skip(skip)
-    .limit(limit)
-    .exec((err,products)=>{
-        if(err) return res.json({success:false,err})
-        res.json({success:true,products,postSize:products.length})
-    })
-   }
-   else{
-    Product.find(findArgs)
-    .populate('writer')
-    .sort([[sortBy,order]])
-    .skip(skip)
-    .limit(limit)
-    .exec((err,products)=>{
-        if(err) return res.json({success:false,err})
-        res.json({success:true,products,postSize:products.length})
-    })
-   }
 })
 
-router.post('/getSearchProduct',(req,res)=>{
-    let order = req.body.order ? req.body.order :'desc';
-    let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
-    let limit = req.body.limit? parseInt(req.body.limit) : 100;
-    let skip = parseInt(req.body.skip);
-    let findArgs ={};
-    let term = req.body.searchTerm;
-    
-    for(let key in req.body.filters){
-        if(req.body.filters[key].length >0){
-            if(key==='price'){
 
-            }
-            else{
-                findArgs[key]=req.body.filters[key]
-            }
-        }
-        
-    }
-    console.log(findArgs);
-   if(term){
-    Product.find(findArgs)
-    .find({$text:{$search:term}})
-    .populate('writer')
-    .sort([[sortBy,order]])
-    .skip(skip)
-    .limit(limit)
-    .exec((err,products)=>{
-        if(err) return res.json({success:false,err})
-        res.json({success:true,products,postSize:products.length})
-    })
-   }
-   else{
-    Product.find(findArgs)
-    .populate('writer')
-    .sort([[sortBy,order]])
-    .skip(skip)
-    .limit(limit)
-    .exec((err,products)=>{
-        if(err) return res.json({success:false,err})
-        res.json({success:true,products,postSize:products.length})
-    })
-   }
-})
-*/
+
+
 router.post('/removeProduct',(req,res)=>{
     Product.findOneAndDelete({_id:req.body.productId})
     .exec((err,result)=>{

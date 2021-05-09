@@ -9,7 +9,7 @@ const DetailContainer = (props) => {
  
   const productId = props.match.params.productId;
   const user = useSelector((state) => state.user.userData, []);
-  const writer = { ...user };
+  
  
   return (
     <div>

@@ -2,20 +2,23 @@ import React from 'react'
 import {Carousel} from 'antd';
 
 
-const ImageSlider = ({images})=> {
-    console.log(images);
+const ImageSlider = ({images,productId})=> {
+    
     return (
-        <div className='img_container' style={{width:'100%',margin:'0'}}>
-            <Carousel autoplay>
+        
+            <Carousel  autoplay>
                 {images && images.map((image,index)=>(
-                    <div key={index} style={{}}>
-                        <img className='img'
+                <div key={index} className="landing-content_card-img-wrap">
+                  <a href={`product/${productId}`}>
+                  <img  className='landing-content_card-img'
                            src={image} alt="product Image"/>
-                    </div>
+                  </a>
+                </div>
                 ))}
             </Carousel>
+        
             
-        </div>
+        
         
     )
 }

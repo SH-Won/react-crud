@@ -34,35 +34,25 @@ const LaindingPage = ({writer,removeProduct,products,postSize,loadMoreItems,Limi
         }
          
     return (
-        <div style={{width:'90vw' ,margin:'1rem auto',justifyContent:'center'}}>
+        <div className="landing-content-container" >
         
-        
-        <div style={{display:'flex',justifyContent:'flex-end',margin:'1rem auto'}}>
-       
-        </div>
-        
-       {/* {products.length ===0 ? 
-       <div>게시글을 불러오는 중입니다</div> :
-        <Row gutter={[16,16]}> 
-            {renderCard}   
-        </Row>
-        }
-    */}
       {products.length ===0 ? 
       <div>게시글을 불러오는 중입니다</div> : 
-      <div className="product_container">
+      <section className="landing-content-wrap">
       {products.map((product,index)=>(
-        <div key={`${product._id}+${index}`} className="product_card" >
-        <a href={`product/${product._id}`}><ImageSlider images={product.images}/></a>
-        <ul className="product_explain">
-            <li className="explain_item">{product.title}</li>
-            <li className="explain_item">작성자 : {product.writer.name}</li>
-            <li className="explain_item">분류 {product.category}</li>
-            <li className="explain_item">{product.createdAt}</li>
+        <div key={`${product._id}+${index}`} className="landing-content_card" >
+         
+        <ImageSlider images={product.images} productId={product._id}/>
+        
+        <ul className="landing-content_card-information">
+            <li className="information-item">{product.title}</li>
+            <li className="information-item">작성자 : {product.writer.name}</li>
+            <li className="information-item">분류 {product.category}</li>
+            <li className="information-item">{product.createdAt}</li>
         </ul> 
     </div>
       ))}
-      </div>
+      </section>
   }
         
         <br/><br/>

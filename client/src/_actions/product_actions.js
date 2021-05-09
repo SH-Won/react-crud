@@ -2,16 +2,14 @@
 import axios from 'axios';
 import {
     UPLOAD_IMAGE,
-    DELETE_IMAGE,
-    PREVIEW_IMAGE,
+    
 
     UPLOAD_PRODUCT,
     GET_PRODUCT,
     DELETE_PRODUCT,
     REMOVE_PRODUCT,
 
-    GET_FILTER_PRODUCT,
-    GET_SEARCH_PRODUCT,
+    
     GET_FIRST_PRODUCT,
     GET_PRODUCT_DETAIL,
     UPDATE_PRODUCT_VIEWS,
@@ -25,16 +23,6 @@ import {
     SUB_PRODUCT_DISLIKE
 } from './types';
 
-export function previewImage(fileURL){
-    let ImageArray =[];
-    ImageArray = [...fileURL]
-    const request =[...ImageArray]
-
-    return{
-        type:PREVIEW_IMAGE,
-        payload:request
-    }
-}
 export function uploadImage(formData,config){
   const request = axios.post('/api/product/uploadfiles',formData,config)
     .then(response=>response.data.url)
@@ -45,18 +33,7 @@ export function uploadImage(formData,config){
     }
     
 }
-export function deleteImages(image,imageArray){
-    const current = imageArray.indexOf(image)
-    imageArray.splice(current,1)
 
-    const request = [...imageArray]
-
-    return {
-        type:DELETE_IMAGE,
-        payload:request
-    }
-    
-}
 export function uploadProduct(variable){
     const request = axios.post('/api/product/uploadProduct',variable)
     .then(response=> response.data.result)
@@ -66,16 +43,24 @@ export function uploadProduct(variable){
         payload:request
     }
 } 
-export function getFirstProduct(skip,limit,filters,searchTerm){
-    let variable={
-        skip:skip,
-        limit:limit,
-        filters:filters,
-        searchTerm:searchTerm
-        
-    }
+export function getProduct(variable){
     
-    const request = axios.post('/api/product/getFirstProducts',variable)
+    let vari = JSON.stringify(variable)
+
+    const request =axios.get(`/api/product/getProducts?variable=${vari}`)
+    .then(response=>response.data)
+
+    return{
+        type:GET_PRODUCT,
+        payload:request
+    }
+
+}
+
+export function getFirstProduct(variable){
+    let vari = JSON.stringify(variable)
+    
+    const request = axios.get(`/api/product/getProducts?variable=${vari}`)
     .then(response=>response.data)
 
     return{
@@ -99,60 +84,8 @@ export function getBoardProduct(skip,limit,filters,searchTerm){
         payload:request
     }
 }
-export function getProduct(skip,limit,filters,searchTerm){
-    let variable={
-        skip:skip,
-        limit:limit,
-        filters:filters,
-        searchTerm:searchTerm
-    }
-    
-    const request = axios.post('/api/product/getProducts',variable)
-    .then(response=>response.data)
-
-    return{
-        type:GET_PRODUCT,
-        payload:request
-    }
-}
-export function getFilterProduct(skip,limit,filters,searchTerm){
-    let variable={
-        skip:skip,
-        limit:limit,
-        filters:filters,
-        searchTerm:searchTerm
-    }
-    
-    const request = axios.post('/api/product/getFilterProduct',variable)
-    .then(response=>response.data)
-
-    return{
-        type:GET_FILTER_PRODUCT,
-        payload:request
-    }
-}
-export function getSearchProduct(skip,limit,filters,searchTerm){
-    let variable={
-        skip:skip,
-        limit:limit,
-        filters:filters,
-        searchTerm:searchTerm
-    }
-    
-    const request = axios.post('/api/product/getSearchProduct',variable)
-    .then(response=>response.data)
-
-    return{
-        type:GET_SEARCH_PRODUCT,
-        payload:request
-    }
-}
 export function deleteProduct(product_id,writer,skip,limit,filters,searchTerm){
-  /*  const current = productArray.indexOf(product)
-    productArray.splice(current,1)
-    const r = [...productArray]
-  */
-
+  
     let variable={
         _id:product_id,
         writer:writer,

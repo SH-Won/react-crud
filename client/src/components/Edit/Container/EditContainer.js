@@ -2,10 +2,10 @@ import React,{useState,useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux';
 import {
   uploadImage,
-  deleteImages,
+  
   getProductDetail,
   updateProduct,
-  previewImage
+  
 } from "../../../_actions/product_actions";
 import EditPage from '../Presenter/EditPage';
 import '../Presenter/Edit.css';
@@ -39,7 +39,7 @@ const EditContainer = (props) => {
     useEffect(()=>{
           dispatch(getProductDetail(productId))
     },[dispatch])
-    const product = useSelector(state=>state.upload.product,[])
+    const product = useSelector(state=>state.product.product,[])
    // const images = useSelector(state=>state.upload.images,[]);
     useEffect(()=>{
          setTitle(product.title)
@@ -73,7 +73,7 @@ const EditContainer = (props) => {
                fileURLs.push(reader.result);
                setFileURL([...FileURL,...fileURLs])
 
-               dispatch(previewImage(fileURLs))
+               //dispatch(previewImage(fileURLs))
            }
            reader.readAsDataURL(file)
        }

@@ -1,15 +1,13 @@
 import {
     UPLOAD_IMAGE,
-    DELETE_IMAGE,
-    PREVIEW_IMAGE,
+    
 
     UPLOAD_PRODUCT,
     GET_PRODUCT,
     DELETE_PRODUCT,
     REMOVE_PRODUCT,
 
-    GET_FILTER_PRODUCT,
-    GET_SEARCH_PRODUCT,
+    
     GET_FIRST_PRODUCT,
     GET_PRODUCT_DETAIL,
     UPDATE_PRODUCT_VIEWS,
@@ -42,14 +40,6 @@ export default function(state=initialState,action){
         case UPLOAD_IMAGE :
             return{
                 ...state, images:[...state.images,...action.payload]
-            }
-        case DELETE_IMAGE :
-            return{
-                ...state, images:[...action.payload]
-            }
-        case PREVIEW_IMAGE:
-            return{
-                ...state, previewImages:[...action.payload]
             }
 
         case UPLOAD_PRODUCT:
@@ -87,18 +77,6 @@ export default function(state=initialState,action){
                 ...state,
             }   
             
-        case GET_FILTER_PRODUCT:
-            return{
-                ...state,
-                products:[...action.payload.products],
-                postSize:action.payload.postSize
-            }
-        case GET_SEARCH_PRODUCT :
-            return{
-                ...state,
-                products:[...action.payload.products],
-                postSize:action.payload.postSize
-            }
         case GET_PRODUCT_DETAIL:
             return{
                 ...state,

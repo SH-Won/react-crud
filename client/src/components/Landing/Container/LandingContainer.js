@@ -6,14 +6,15 @@ import LandingMenu from '../Presenter/LandingMenu';
 import CheckBox from '../Presenter/CheckBox';
 import SearchBar from '../Presenter/SearchBar';
 import {category} from '../Datas/Datas'
-import {getFirstProduct, getProduct,deleteProduct} from '../../../_actions/product_actions';
-import '../Presenter/landing.css'
+import {getFirstProduct, getProduct,deleteProduct,} from '../../../_actions/product_actions';
+import '../Presenter/landing2.css'
 
 
 
-const LandingContainer = () => {
+const LandingContainer = (props) => {
     
     const dispatch = useDispatch();
+    const [loadMore,setLoadMore]=useState(false);
     const [Skip,setSkip]= useState(0)
     const [Limit,setLimit]=useState(16);
     const [Checked,setChecked]=useState([])
@@ -25,30 +26,30 @@ const LandingContainer = () => {
     
      
     useEffect(()=>{
-        dispatch(getFirstProduct(Skip,Limit,Filters,SearchValue))
+        let variable={
+            skip:Skip,
+            limit:Limit,
+            filters:Filters,
+            searchTerm:SearchValue,
+        }
+
+        //(getFirstProduct(Skip,Limit,Filters,SearchValue))
+        loadMore ? 
+        dispatch(getProduct(variable)) :
+        dispatch(getFirstProduct(variable))
+
         
-    },[])
+        
+    },[Skip,Filters,SearchValue])
     const products=useSelector(state=>state.product.products)
     const postSize=useSelector(state=>state.product.postSize)
     const userProducts = products.filter(product =>product.writer._id==writer._id)
 
     
-    
-    
-    
-    
     const loadMoreItems = ()=>{
-        
-        let skip = Skip+Limit;
-        let limit =Limit;
-        let filters =Filters
-        let searchValue = SearchValue;
-        dispatch(getProduct(skip,limit,filters,searchValue))
+        let skip=Skip+Limit;
+        setLoadMore(true);
         setSkip(skip)
-        
-        
-        
-       
     }
     const categoryToggle=(value)=>{
         const valueIndex = Checked.indexOf(value)
@@ -64,42 +65,33 @@ const LandingContainer = () => {
 
     }
     const filterHandler = (filters,category)=>{
+        setLoadMore(false);
         let FilterArray = {...Filters}
         FilterArray[category]=filters;
         setFilters(FilterArray)
-        
-        let skip=0;
-        let limit=Limit;
-        let filter = FilterArray
-        let searchValue=SearchValue
-        dispatch(getFirstProduct(skip,limit,filter,searchValue))
         setSkip(0);
     }
     const onChangeSearchValue = (e)=>{
+        setLoadMore(false);
         setSearchValue(e.target.value)
-        let skip=0;
-        let limit=Limit;
-        let filter =Filters
-        let searchValue = e.target.value
-        
-        dispatch(getFirstProduct(skip,limit,filter,searchValue))
-        setSkip(0);
+         setSkip(0);
     }
+
     const removeProduct =(productId)=>{
         let skip=Skip;
         let limit=Limit;
         let filter=Filters
         let searchValue=SearchValue;
-        console.log(filter)
+       
 
         dispatch(deleteProduct(productId,writer._id,skip,limit,filter,searchValue))
 
     }
     return (
-        <div style={{width:'100%',margin:'1rem auto'}}>
+        <div className="landing-container" >
         <div 
-        className="checkbox_searchbar"
-        style={{display:'flex',justifyContent:'space-between',marign:'1rem 3rem',alignItems:'center'}}>
+        className="landing-checkbox_searchbar">
+        
 
             
             <CheckBox 
@@ -124,6 +116,7 @@ const LandingContainer = () => {
                 Limit={Limit}
                 writer={writer._id}
                 removeProduct={removeProduct}
+                history={props.history}
                        />
                        </Route>
             <Route exact path="/user">
