@@ -47,12 +47,14 @@
     margin:.5rem;
 }
 .landing-content_card-img-wrap{
-  width:100%;
+  padding-top: 100%;
+  position:relative
   
 }
 .landing-content_card-img{
- 
   width:100%;
+  position: absolute;
+  top:0;
   
 }
 .landing-content_card > a{
