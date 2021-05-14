@@ -4,7 +4,7 @@ import {
 
     UPLOAD_PRODUCT,
     GET_PRODUCT,
-    DELETE_PRODUCT,
+    
     REMOVE_PRODUCT,
 
     
@@ -12,7 +12,7 @@ import {
     GET_PRODUCT_DETAIL,
     UPDATE_PRODUCT_VIEWS,
     UPDATE_PRODUCT,
-    GET_BOARD_PRODUCT,
+    
     GET_USER_FAVORITE,
 
     ADD_PRODUCT_LIKE,
@@ -54,23 +54,14 @@ export default function(state=initialState,action){
                 
                 postSize:action.payload.postSize
             }
-        case GET_BOARD_PRODUCT:
-            return {
-                ...state,
-                boardProducts:[...action.payload]
-            }    
+         
         case GET_PRODUCT:
             return{
                 ...state, products:[...state.products,...action.payload.products]
                 ,postSize:action.payload.postSize
                
             }
-        case DELETE_PRODUCT:
-            return{
-                ...state,
-               products:[...action.payload.products]
-               
-            }
+        
 
         case REMOVE_PRODUCT:
             return{

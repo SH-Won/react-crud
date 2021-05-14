@@ -34,6 +34,7 @@ const BoardContainer = ({productId}) => {
         setPages(pages)
         setCurrentPage(pageIndex)
         setSkip((pageIndex -1)*Limit )
+        console.log('useEffect 1')
         
       },[products])
 
@@ -43,6 +44,7 @@ const BoardContainer = ({productId}) => {
         
         const board = products.slice(Skip,Skip+Limit)
           setboardProduct(board)
+          console.log('useEffect 2');
       },[CurrentPage])
      
      

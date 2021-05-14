@@ -6,7 +6,6 @@ import {
 
     UPLOAD_PRODUCT,
     GET_PRODUCT,
-    DELETE_PRODUCT,
     REMOVE_PRODUCT,
 
     
@@ -14,7 +13,7 @@ import {
     GET_PRODUCT_DETAIL,
     UPDATE_PRODUCT_VIEWS,
     UPDATE_PRODUCT,
-    GET_BOARD_PRODUCT,
+    
     GET_USER_FAVORITE,
 
     ADD_PRODUCT_LIKE,
@@ -68,40 +67,7 @@ export function getFirstProduct(variable){
         payload:request
     }
 }
-export function getBoardProduct(skip,limit,filters,searchTerm){
-    let variable={
-        skip:skip,
-        limit:limit,
-        filters:filters,
-        searchTerm:searchTerm
-        
-    }
-    const request = axios.post('/api/product/getBoardProducts',variable)
-    .then(response=>response.data.boardProducts)
 
-    return{
-        type:GET_BOARD_PRODUCT,
-        payload:request
-    }
-}
-export function deleteProduct(product_id,writer,skip,limit,filters,searchTerm){
-  
-    let variable={
-        _id:product_id,
-        writer:writer,
-        skip:skip,
-        limit:limit,
-        filters:filters,
-        searchTerm:searchTerm
-    }
-    const request =axios.post('/api/product/deleteProduct',variable)
-    .then(response=>response.data)
-
-    return {
-        type:DELETE_PRODUCT,
-        payload:request
-    }
-}
 export function removeProduct(variable){
     const request = axios.post('/api/product/removeProduct',variable)
     .then(response=>response.data)

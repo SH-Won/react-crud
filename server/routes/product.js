@@ -238,50 +238,6 @@ router.post('/recentlyView',(req,res)=>{
     
 })
 
-router.post('/getBoardProducts',(req,res)=>{
-    let order = req.body.order ? req.body.order : 'desc';
-    let sortBy =req.body.sortBy ? req.body.sortBy : '_id';
-    let limit = req.body.limit ? parseInt(req.body.limit) : 100;
-    let skip = parseInt(req.body.skip);
-    let term = req.body.searchTerm;
-
-    let findArgs={}
-    for(let key in req.body.filters){
-        if(req.body.filters[key].length >0){
-            if(req.body.filters[key]==='price'){
-
-            }
-            else{
-                findArgs[key]=req.body.filters[key]
-            }
-        }
-    }
-
-   if(term){
-    Product.find(findArgs)
-    .find({$text:{$search:term}})
-    .populate('writer')
-    //.sort([[sortBy,order]])
-    .skip(skip)
-    .limit(limit)
-    .exec((err,boardProducts)=>{
-        if(err) return res.json({success:false,err})
-        res.json({success:true,boardProducts})
-    })
-   }
-   else{
-    Product.find(findArgs)
-    .populate('writer')
-  //  .sort([[sortBy,order]])
-    .skip(skip)
-    .limit(limit)
-    .exec((err,boardProducts)=>{
-        if(err) return res.json({success:false,err})
-        res.json({success:true,boardProducts})
-        
-    })
-   }
-})
 
 
 router.get('/getProducts',(req,res)=>{
@@ -365,72 +321,6 @@ router.post('/removeProduct',(req,res)=>{
         }
         )
    
-})
-
-router.post('/deleteProduct',(req,res)=>{
-    let order = req.body.order ? req.body.order :'desc';
-    let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
-    let limit = req.body.limit? parseInt(req.body.limit) : 100;
-    let skip = parseInt(req.body.skip);
-    let term = req.body.searchTerm;
-    
-    let findArgs={}
-    console.log('filters:',req.body.filters)
-    for(let key in req.body.filters){
-        if(req.body.filters[key].length >0 ){
-            if(key==='price'){
-
-            }
-            else{
-                findArgs[key]=req.body.filters[key]
-            }
-        }
-    }
-    console.log(findArgs)
-
-    Product.findOneAndDelete({_id:req.body._id,writer:req.body.writer})
-   /* .exec((err,result)=>{
-        if(err) return res.json({success:false,err})
-        res.json({success:true,result});
-    })
-    */
-     .exec((err,result)=>{
-        if(err) return res.json({success:false,err})
-        View.remove({product:req.body.productId})
-                .exec((err,result)=>{
-                    if(err) return res.json({success:false,err})
-                    console.log(result)
-                })
-
-        if(term){
-
-            Product.find(findArgs)
-            .find({$text:{$search:term}})
-           // .sort([[sortBy,order]])
-            .skip(0)
-            .limit(skip+limit)
-            .populate('writer')
-            .exec((err,products)=>{
-                if(err) return res.json({success:false,err})
-
-               
-
-                res.json({success:true,products});
-            })
-        }
-        else{
-            console.log('findArgs : ',findArgs)
-            Product.find(findArgs)
-           // .sort([[sortBy,order]])
-            .skip(0)
-            .limit(skip+limit)
-            .populate('writer')
-            .exec((err,products)=>{
-                if(err) return res.json({success:false,err})
-                res.json({success:true,products});
-            })
-        }
-    })
 })
 //?id =${productId}&type=single
 //id = 121212123,12412124,23423421 type=array

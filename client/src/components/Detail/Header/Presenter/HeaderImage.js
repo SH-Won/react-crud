@@ -8,9 +8,9 @@ const HeaderImage = (props) => {
         <div className="detail-header_img-container">
                    
                     {selectedImage && 
-                    
+                    <div className="selected-img-container">
                     <img className="selected-img" src={`${selectedImage}`} />
-                    
+                    </div>
                     }
                     <div className="choose-img-wrap">
                     {images && images.map((image,index)=>(

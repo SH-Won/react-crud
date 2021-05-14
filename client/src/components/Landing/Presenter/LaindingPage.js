@@ -4,7 +4,8 @@ import ImageSlider from './ImageSlider'
 const {Meta}=Card;
 
 
-const LaindingPage = ({writer,removeProduct,products,postSize,loadMoreItems,Limit}) => {
+const LaindingPage = ({products,postSize,loadMoreItems,Limit}) => {
+    {/*
     const renderCard = 
     products.length >0 && products.map((product,index)=>{
         const removeButton = writer === product.writer._id ? 
@@ -32,6 +33,7 @@ const LaindingPage = ({writer,removeProduct,products,postSize,loadMoreItems,Limi
                 </div>
             
         }
+    */}
          
     return (
         <div className="landing-content-container" >

@@ -6,7 +6,7 @@ import LandingMenu from '../Presenter/LandingMenu';
 import CheckBox from '../Presenter/CheckBox';
 import SearchBar from '../Presenter/SearchBar';
 import {category} from '../Datas/Datas'
-import {getFirstProduct, getProduct,deleteProduct,} from '../../../_actions/product_actions';
+import {getFirstProduct, getProduct} from '../../../_actions/product_actions';
 import '../Presenter/landing2.css'
 
 
@@ -77,16 +77,7 @@ const LandingContainer = (props) => {
          setSkip(0);
     }
 
-    const removeProduct =(productId)=>{
-        let skip=Skip;
-        let limit=Limit;
-        let filter=Filters
-        let searchValue=SearchValue;
-       
-
-        dispatch(deleteProduct(productId,writer._id,skip,limit,filter,searchValue))
-
-    }
+    
     return (
         <div className="landing-container" >
         <div 
@@ -114,8 +105,8 @@ const LandingContainer = (props) => {
                 postSize={postSize}
                 loadMoreItems={loadMoreItems}
                 Limit={Limit}
-                writer={writer._id}
-                removeProduct={removeProduct}
+                
+                
                 history={props.history}
                        />
                        </Route>
