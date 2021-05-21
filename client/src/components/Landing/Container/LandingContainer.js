@@ -5,6 +5,7 @@ import LandingPage from '../Presenter/LaindingPage'
 import LandingMenu from '../Presenter/LandingMenu';
 import CheckBox from '../Presenter/CheckBox';
 import SearchBar from '../Presenter/SearchBar';
+import CategoryBoard from '../Presenter/CategoryBoard';
 import {category} from '../Datas/Datas'
 import {getFirstProduct, getProduct} from '../../../_actions/product_actions';
 import '../Presenter/landing2.css'
@@ -77,6 +78,13 @@ const LandingContainer = (props) => {
          setSkip(0);
     }
 
+    const boardCategory = ()=> <div className="category-board-container">
+    {products && category.map(item => {
+        let categoryProducts = products.filter(product => product.category === Number(item._id));
+        return <CategoryBoard key={item._id} products={categoryProducts}/>
+    } )}
+     </div>
+
     
     return (
         <div className="landing-container" >
@@ -95,6 +103,7 @@ const LandingContainer = (props) => {
             onChangeSearchValue={onChangeSearchValue}
             />
             </div>
+            
             
             <div>
             <LandingMenu/>

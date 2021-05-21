@@ -29,10 +29,7 @@ const CartPage = (props) => {
      dispatch(removeUserCartItem(productId))
    }
 
-   useEffect(()=>{
-
-   },[])
-    
+  
 
     
     return (

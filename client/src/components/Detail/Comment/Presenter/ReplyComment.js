@@ -6,7 +6,6 @@ const ReplyComment = ({
   parentCommentId,
   writer,
   deleteComment,
-  
   onSubmitComment,
 }) => {
   const [OpenReply, setOpenReply] = useState(false);
@@ -18,7 +17,7 @@ const ReplyComment = ({
   useEffect(() => {
     let number = 0;
     commentList &&
-      commentList.map((comment) => {
+    commentList.map((comment) => {
         if (comment.responseTo === parentCommentId) {
           number++;
         }

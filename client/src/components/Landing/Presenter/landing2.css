@@ -82,6 +82,33 @@
     text-align: end;
     padding: 0 0.5rem;
 }
+.category-board-container{
+  width:100%;
+  display:flex;
+  flex-wrap: wrap;
+}
+.category-board{
+  width:30%;
+  margin:1rem;
+}
+.board-product{
+  list-style: none;
+  display:flex;
+  flex-direction: column;
+  padding:0;
+  margin:0;
+}
+.pages{
+  list-style: none;
+  padding:0;
+  display:flex;
+}
+.pages >li{
+  border:1px solid black;
+}
+
+
+
 @media screen and (max-width:1000px){
     .landing-content_card{
       width:26%;

@@ -12,7 +12,6 @@ import {
     RECENTLY_VIEW_USER
 } from './types';
 import { USER_SERVER } from '../components/Config';
-import ActionButton from 'antd/lib/modal/ActionButton';
 
 export function registerUser(dataToSubmit){
     const request = axios.post(`${USER_SERVER}/register`,dataToSubmit)
