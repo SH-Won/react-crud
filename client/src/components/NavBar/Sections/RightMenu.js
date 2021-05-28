@@ -33,13 +33,7 @@ function RightMenu(props) {
   } else {
     return (
       <Menu mode={props.mode}>
-         <Menu.Item key="cart">
-          <Badge count={user.userData && user.userData.cart.length}>
-          <a href='/user/cart' style={{marginRight:-22,color:'#667777'}}>
-            <Icon type="shopping-cart" style={{fontSize:30,marginBottom:4}}/>
-          </a>
-          </Badge>
-        </Menu.Item>
+        
         <Menu.Item key="upload">
           <a href="/upload">글 올리기</a>
         </Menu.Item>

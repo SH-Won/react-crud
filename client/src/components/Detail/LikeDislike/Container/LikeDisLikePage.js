@@ -60,7 +60,7 @@ const LikeDisLikePage = (props) => {
         }
      
     }
-    const onDisLike = (commentId)=>{
+    const onDisLike = ()=>{
         let variable ={
             commentId:comment._id,
             user:user,

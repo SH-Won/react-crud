@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react'
 
-const CategoryBoard = ({products}) => {
+const CategoryBoard = ({products,title}) => {
     const [skip,setSkip]=useState(0);
     const [limit,setLimit]=useState(4);
     const [pages,setPages]=useState([]);
     const [currentProducts,setCurrentProducts]=useState([]);
+    const [currentPage,setCurrentPage]=useState(1);
     //posts 17개
     console.log(products);
     useEffect(()=>{
@@ -24,22 +25,42 @@ const CategoryBoard = ({products}) => {
         let boardProducts = products.slice(start,finish);
         
         setCurrentProducts(pre => [...boardProducts]);
-
+        setCurrentPage(page);
     }
 
-
-    return (
-        <div className="category-board">
-            <ul className="board-product">
-                {currentProducts && currentProducts.map((post,index)=>(
-                    <li key={index}>{post.title}</li>
+    const renderBoard = ()=>(
+        <div className="board-container">
+            
+        <ul className="board-product">
+                {currentProducts && currentProducts.map((product,index)=>(
+                    <li key={index}><a href={`/product/${product._id}`}>{product.title}</a></li>
                 ))}
             </ul>
             <ul className="pages">
                 {pages && pages.map(page => 
-                    <li key={page} onClick={()=>handlePage(page)}>{page}</li>
+                    <li className={currentPage === page ? 'current':''} key={page} onClick={()=>handlePage(page)}>{page}</li>
                     )}
             </ul>
+        </div>
+    )
+    const noItemRenderBoard = () =>(
+        
+        <div className="board-container">
+           게시물이 없습니다.
+        </div>
+        
+        
+    )
+    
+
+
+    return (
+        <div className="category-board">
+            <span className="category-board-title">{title}</span>
+            {products && products.length > 0 ? 
+            renderBoard() :
+            noItemRenderBoard()
+            }
             
         </div>
     )

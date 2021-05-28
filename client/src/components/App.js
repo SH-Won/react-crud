@@ -14,8 +14,8 @@ import LandingContainer from './Landing/Container/LandingContainer'
 import DetailContainer from './Detail/DetailContainer';
 import EditContainer from './Edit/Container/EditContainer';
 import FavoriteContainer from './Favorite/Container/FavoriteContainer'
-import Puzzle from './Puzzle/Puzzle';
-import CartPage from './Cart/CartPage';
+
+
 //null   Anyone Can go inside
 //true   only logged in user can go inside
 //false  logged in user can't go inside
@@ -28,9 +28,6 @@ function App() {
           <Switch>
           <Route exact path="/" component={Auth(LandingContainer, null)} />
           <Route exact path="/user" component={Auth(LandingContainer, null)} />
-
-          
-          
           <Route exact path="/login" component={Auth(LoginPage, false)} />
           <Route exact path="/register" component={Auth(RegisterPage, false)} />
           <Route exact path="/upload" component={Auth(UploadContainer, true)} />
@@ -40,7 +37,7 @@ function App() {
           <Route exact path="/favorite/like" component={Auth(FavoriteContainer,true)}/>
           <Route exact path="/favorite/dislike" component={Auth(FavoriteContainer,true)}/>
          
-          <Route exact path="/user/cart" component={Auth(CartPage,true)} />
+          
         
         </Switch>
       </div>

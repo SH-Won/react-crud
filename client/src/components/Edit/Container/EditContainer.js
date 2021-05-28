@@ -40,7 +40,7 @@ const EditContainer = (props) => {
           dispatch(getProductDetail(productId))
     },[dispatch])
     const product = useSelector(state=>state.product.product,[])
-   // const images = useSelector(state=>state.upload.images,[]);
+   
     useEffect(()=>{
          setTitle(product.title)
          setDescription(product.description)

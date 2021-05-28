@@ -49,8 +49,7 @@ const LaindingPage = ({products,postSize,loadMoreItems,Limit}) => {
         <ul className="landing-content_card-information">
             <li className="information-item">{product.title}</li>
             <li className="information-item">작성자 : {product.writer.name}</li>
-            <li className="information-item">분류 {product.category}</li>
-            <li className="information-item">{product.createdAt}</li>
+            
         </ul> 
     </div>
       ))}

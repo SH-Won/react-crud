@@ -2,16 +2,19 @@
 
 # dependencies
 /node_modules
+/zzz
 /.pnp
 .pnp.js
 ./README.md
 README.md
+
 
 # testing
 /coverage
 
 # production
 /build
+
 
 # misc
 .DS_Store

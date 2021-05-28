@@ -59,6 +59,7 @@ body {
 }
 
 .app {
+  height:100vh;
   flex-direction: column;
   display: flex;
   justify-content: center;

@@ -3,7 +3,7 @@ import {useSelector,useDispatch} from 'react-redux';
 import HeaderPage from '../Presenter/HeaderPage'
 import { getProductDetail,removeProduct} from '../../../../_actions/product_actions';
 import '../Presenter/Header.css'
-import {addUserCartItem} from '../../../../_actions/user_actions';
+
 
 
 const HeaderContainer = (props) => {
@@ -48,10 +48,7 @@ const HeaderContainer = (props) => {
         
         setSelectedImage(image)
     }
-    const addToCart = (productId)=>{
-        dispatch(addUserCartItem(productId));
-
-    }
+  
     
 
     return (
@@ -62,7 +59,6 @@ const HeaderContainer = (props) => {
             deleteProduct={deleteProduct}
             selectedImage={selectedImage} 
             selectImage={selectImage} 
-            addToCart={addToCart}
             />
         
     )

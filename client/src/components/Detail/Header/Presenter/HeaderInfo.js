@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button} from 'antd'
 
-const HeaderInfo = ({product,user,deleteProduct,addToCart}) => {
+const HeaderInfo = ({product,user,deleteProduct}) => {
    
     return (
         <div style={{width:'100%',margin:'1rem auto'}}>
@@ -25,10 +25,7 @@ const HeaderInfo = ({product,user,deleteProduct,addToCart}) => {
         <Button onClick={deleteProduct}>삭제</Button>
         </div>
         }
-        {
-        user && 
-         <Button onClick={()=>addToCart(product._id)}>장바구니</Button>
-        }
+        
         
         
             

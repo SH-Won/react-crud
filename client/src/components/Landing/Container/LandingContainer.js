@@ -8,7 +8,7 @@ import SearchBar from '../Presenter/SearchBar';
 import CategoryBoard from '../Presenter/CategoryBoard';
 import {category} from '../Datas/Datas'
 import {getFirstProduct, getProduct} from '../../../_actions/product_actions';
-import '../Presenter/landing2.css'
+import '../Presenter/Landing.css'
 
 
 
@@ -17,15 +17,17 @@ const LandingContainer = (props) => {
     const dispatch = useDispatch();
     const [loadMore,setLoadMore]=useState(false);
     const [Skip,setSkip]= useState(0)
-    const [Limit,setLimit]=useState(16);
+    const [Limit,setLimit]=useState(8);
     const [Checked,setChecked]=useState([])
     const [Filters,setFilters]=useState({category:[]})
     const [SearchValue,setSearchValue]=useState('');
     const user = useSelector(state=>state.user.userData);
+    const products=useSelector(state=>state.product.products)
+    const postSize=useSelector(state=>state.product.postSize)
+    
     const writer = {...user};
+    const userProducts = products.filter(product =>product.writer._id==writer._id)
     
-    
-     
     useEffect(()=>{
         let variable={
             skip:Skip,
@@ -34,19 +36,13 @@ const LandingContainer = (props) => {
             searchTerm:SearchValue,
         }
 
-        //(getFirstProduct(Skip,Limit,Filters,SearchValue))
         loadMore ? 
         dispatch(getProduct(variable)) :
         dispatch(getFirstProduct(variable))
 
-        
-        
     },[Skip,Filters,SearchValue])
-    const products=useSelector(state=>state.product.products)
-    const postSize=useSelector(state=>state.product.postSize)
-    const userProducts = products.filter(product =>product.writer._id==writer._id)
 
-    
+
     const loadMoreItems = ()=>{
         let skip=Skip+Limit;
         setLoadMore(true);
@@ -78,22 +74,20 @@ const LandingContainer = (props) => {
          setSkip(0);
     }
 
-    const boardCategory = ()=> <div className="category-board-container">
+    const boardCategory = () => 
+    
+    <div className="category-board-container">
     {products && category.map(item => {
         let categoryProducts = products.filter(product => product.category === Number(item._id));
-        return <CategoryBoard key={item._id} products={categoryProducts}/>
+        return <CategoryBoard key={item._id} products={categoryProducts} title={item.name}/>
     } )}
      </div>
 
     
     return (
         <div className="landing-container" >
-        <div 
-        className="landing-checkbox_searchbar">
-        
-
-            
-            <CheckBox 
+         <div className="landing-checkbox_searchbar">
+           <CheckBox 
             category={category}
             Checked={Checked}
             categoryToggle={categoryToggle}
@@ -102,36 +96,33 @@ const LandingContainer = (props) => {
             SearchValue={SearchValue}
             onChangeSearchValue={onChangeSearchValue}
             />
-            </div>
-            
-            
-            <div>
-            <LandingMenu/>
-            <Switch>
+         </div>
+
+         <div>
+          <LandingMenu/>
+          <Switch>
             <Route exact path="/" >
              <LandingPage
                 products={products}
                 postSize={postSize}
                 loadMoreItems={loadMoreItems}
-                Limit={Limit}
-                
-                
+                Limit={Limit}   
                 history={props.history}
-                       />
-                       </Route>
+             />
+              {boardCategory()}
+            </Route>
+            
             <Route exact path="/user">
-            <LandingPage 
+             <LandingPage 
                 products={userProducts}
                 postSize={postSize}
                 loadMoreItems={loadMoreItems}
                 Limit={Limit}/>
-                </Route>
-                <Route exact path="/board" >
-                    <LandingPage/>
-                </Route>
-                </Switch>
+            </Route>
+                
+           </Switch>
             
-        </div>
+         </div>
         </div>
     )
 }

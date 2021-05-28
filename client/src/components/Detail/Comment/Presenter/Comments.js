@@ -66,7 +66,7 @@ const Comments = ({
       <hr />
       <Form onSubmit={() => onSubmitComment(CommentValue)}>
         <TextArea value={CommentValue} onChange={onChangeCommentValue} />
-        <Button onClick={() =>onSubmitComment(CommentValue)}>댓글 달기</Button>
+        <Button onClick={() => { onSubmitComment(CommentValue); setCommentValue('')}}>댓글 달기</Button>
       </Form>
     </div>
   );
