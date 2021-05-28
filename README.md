@@ -39,8 +39,57 @@
 > 만약 props로 값을 전달 할 수 있는 얕은 컴포넌트 구조인데, Redux를 쓴다면, 매우 비효율적이라고 느꼈다.  
 > 두 컴포넌트에서 같은 데이터를 필요로 하고, 컴포넌트의 구조가 props로 전달하기가 매우 까다로운 구조라면, Redux를 사용하는 것은 매우 효율적이나
 > 구조가 깊지 않고, 직선적이라면, Props를 사용하는게 더 효율적인것 같다.  
-+ Axios
-> 
++ Axios (비동기)
+> Axios를 이용하여 데이터를 요청하면 프로미스 객체를 반환한다. 프로미스 객체는 resolve 와 reject를 가지고 있는데, then 메소드 체이닝으로 원할때
+> 후속 처리를 할 수 있다.  
+> 자바스크립트는 함수가 호출되면 콜 스택(Call Stack) 에 올려져 함수 안의 코드를 실행한다. 만약 여러개의 함수가 호출 되고, 그 중간에 통신을 위한
+> 함수가 호출되는데 통신이 10초가 걸린다면, 통신을 위한 함수가 콜 스택(Call Stack)에서 제거 되기 전까지 뒤에 있는 함수는 실행이 안되는 걸까? 라는 생각이 들었다.  
+> 비동기 함수가 호출 되면 콜 스택(Call Stack)에 올려지고, 백그라운드 로 보내진다. 백그라운드에서 처리된 후 콜백 함수가 태스크 큐(Task Queue)로
+> 이동 된다. 그 사이에 나머지 함수들이 콜 스택(Call Stack)에 올려지고 실행되고, 비로소 콜 스택(Call Stack)이 비워진 것을 이벤트루프(Event Loop)
+> 가 확인을 하면, 비동기함수의 콜백함수가 태스크 큐(Task Queue)에서 이벤트 루프에 의해 콜 스택(Call Stack) 으로 올려지고 실행되게 된다.  
+> 비동기에 대해서 조금 더 알아 볼 수 있었다.  
+
+## 화면
++ 로그인 화면  
+
+![로그인화면](https://res.cloudinary.com/dhjegsbqv/image/upload/v1622127099/CRUD/login_eabxmm.gif "로그인 화면")  
+
+
++ 홈 화면  
+
+![홈 화면](https://res.cloudinary.com/dhjegsbqv/image/upload/v1622127125/CRUD/landing_pvfdik.gif "홈 화면")  
+  
+  
++ 카테고리  
+
+![카테고리](https://res.cloudinary.com/dhjegsbqv/image/upload/v1622127099/CRUD/category_s768ne.gif "카테고리")  
+  
+  
++ 검색  
+
+![검색](https://res.cloudinary.com/dhjegsbqv/image/upload/v1622127101/CRUD/search_d7d914.gif "검색")  
+  
+  
++ 디테일 화면  
+
+![디테일 화면](https://res.cloudinary.com/dhjegsbqv/image/upload/v1622127098/CRUD/detailpage_eraxnb.gif "디테일 화면")  
+  
+  
++ 댓글  
+
+![댓글](https://res.cloudinary.com/dhjegsbqv/image/upload/v1622127114/CRUD/comment_rtli7g.gif "댓글")  
+  
+  
++ 좋아요  
+
+![좋아요](https://res.cloudinary.com/dhjegsbqv/image/upload/v1622127100/CRUD/like_coqxmc.gif "좋아요")  
+  
+  
++ 좋아요 삭제  
+
+![좋아요 삭제](https://res.cloudinary.com/dhjegsbqv/image/upload/v1622127130/CRUD/dislike_n0sfno.gif "좋아요 삭제")  
+
+
 
 
 

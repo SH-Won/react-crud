@@ -48,6 +48,8 @@ const LandingContainer = (props) => {
         setLoadMore(true);
         setSkip(skip)
     }
+
+    console.dir(loadMoreItems)
     const categoryToggle=(value)=>{
         const valueIndex = Checked.indexOf(value)
         let CheckedArray =[...Checked]
